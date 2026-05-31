@@ -244,7 +244,7 @@ using  namespace std;
 //}
 int sqrt(int n){
    int s=0;
-   int e =n-1;
+   int e =n;
    int mid=s+(e-s)/2;
    int ans =0;
    while(s<e){
@@ -258,7 +258,7 @@ int sqrt(int n){
    }
    mid = s+(e-s)/2;
    }
-   return mid;
+   return ans;
 }        
 
 
@@ -266,7 +266,24 @@ int sqrt(int n){
 
 
 int main(){
-cout<<sqrt(10);
+   int n;
+   cout<<"Enter the value of n";
+   cin>>n;
+  int  x= sqrt(n);
+cout<<"squreroot of number is"<<x;
+int precision;
+cout<<"enter the precision";
+cin>>precision;
+double step=0.1;
+double ans=x;
+for(int i=0;i<precision;i++){
+
+for (double j =x ;j*j<n;j=j+step){
+ ans=j;
+}
+step = step/10;
+}
+cout<<"final ans is"<<ans;
    // vector<vector<int>>v{ {1,2,3},{4,5,6},{6,7,8},{9,10,11}};
    // waveprinting(v);
 //    Stack s(10);
