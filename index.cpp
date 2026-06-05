@@ -242,48 +242,112 @@ using  namespace std;
 //}
     
 //}
-int sqrt(int n){
-   int s=0;
-   int e =n;
-   int mid=s+(e-s)/2;
-   int ans =0;
-   while(s<e){
-   if(mid*mid==n) return mid;
-  else if(mid*mid>n){
-      e = mid-1;
+// int sqrt(int n){
+//    int s=0;
+//    int e =n;
+//    int mid=s+(e-s)/2;
+//    int ans =0;
+//    while(s<e){
+//    if(mid*mid==n) return mid;
+//   else if(mid*mid>n){
+//       e = mid-1;
+//    }
+//    else{
+//       ans =mid;
+//       s = mid+1;
+//    }
+//    mid = s+(e-s)/2;
+//    }
+//    return ans;
+// } 
+class Node{
+   public:
+   int data;
+   Node* next;
+   Node(int data){
+      this->data=data;
+      this->next=NULL;
    }
-   else{
-      ans =mid;
-      s = mid+1;
+};
+Node* reverseknode(Node* &head,int k){
+   if(head==NULL){
+      return NULL;
    }
-   mid = s+(e-s)/2;
+   Node* prev=NULL;
+   Node* curr=head;
+   Node* forward=curr->next;
+   int count=0;
+   while(count<k){
+      forward = curr->next;
+      curr->next=prev;
+      prev=curr;
+      curr=forward;
+      count++;
    }
-   return ans;
-}        
-
-
-
+   if(forward!=NULL){
+       head->next=reverseknode(forward,k);
+   }
+   return prev;
+}
+void print(Node* &head){
+   Node* temp= head;
+   while(temp!=NULL){
+    cout<<temp->data<<" ";
+    temp=temp-> next; 
+   }
+   cout<<endl;
+}
+Node* getmiddlepointer(Node* &head){
+   if(head==NULL) return head;
+   if(head->next==NULL) return head;
+   Node*slow= head;
+   Node* fast=head;
+   while(slow!=NULL&&fast !=NULL){
+      
+      fast=fast->next;
+      if(fast->next!=NULL){
+        fast=fast->next; 
+        slow=slow->next;
+      } 
+      
+   }
+   return slow;
+}
 
 
 int main(){
-   int n;
-   cout<<"Enter the value of n";
-   cin>>n;
-  int  x= sqrt(n);
-cout<<"squreroot of number is"<<x;
-int precision;
-cout<<"enter the precision";
-cin>>precision;
-double step=0.1;
-double ans=x;
-for(int i=0;i<precision;i++){
+   Node* first=new Node(10);
+   Node* second=new Node(20);
+   Node* third = new Node(30);
+   Node* fourth=new Node(40);
+   Node* fifth=new Node(50);
+   first->next=second;
+   second->next=third;
+   third->next=fourth;
+   fourth->next=fifth;
+   print(first);
+   cout<<getmiddlepointer(first)->data;
+   Node* n=reverseknode(first,3);
+   print(n);
+   
+//    int n;
+//    cout<<"Enter the value of n";
+//    cin>>n;
+//   int  x= sqrt(n);
+// cout<<"squreroot of number is"<<x;
+// int precision;
+// cout<<"enter the precision";
+// cin>>precision;
+// double step=0.1;
+// double ans=x;
+// for(int i=0;i<precision;i++){
 
-for (double j =x ;j*j<n;j=j+step){
- ans=j;
-}
-step = step/10;
-}
-cout<<"final ans is"<<ans;
+// for (double j =x ;j*j<n;j=j+step){
+//  ans=j;
+// }
+// step = step/10;
+// }
+// cout<<"final ans is"<<ans;
    // vector<vector<int>>v{ {1,2,3},{4,5,6},{6,7,8},{9,10,11}};
    // waveprinting(v);
 //    Stack s(10);
