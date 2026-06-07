@@ -260,75 +260,137 @@ using  namespace std;
 //    }
 //    return ans;
 // } 
-class Node{
+// class Node{
+//    public:
+//    int data;
+//    Node* next;
+//    Node(int data){
+//       this->data=data;
+//       this->next=NULL;
+//    }
+// };
+// Node* reverseknode(Node* &head,int k){
+//    if(head==NULL){
+//       return NULL;
+//    }
+//    Node* prev=NULL;
+//    Node* curr=head;
+//    Node* forward=curr->next;
+//    int count=0;
+//    while(count<k){
+//       forward = curr->next;
+//       curr->next=prev;
+//       prev=curr;
+//       curr=forward;
+//       count++;
+//    }
+//    if(forward!=NULL){
+//        head->next=reverseknode(forward,k);
+//    }
+//    return prev;
+// }
+// void print(Node* &head){
+//    Node* temp= head;
+//    while(temp!=NULL){
+//     cout<<temp->data<<" ";
+//     temp=temp-> next; 
+//    }
+//    cout<<endl;
+// }
+// Node* getmiddlepointer(Node* &head){
+//    if(head==NULL) return head;
+//    if(head->next==NULL) return head;
+//    Node*slow= head;
+//    Node* fast=head;
+//    while(slow!=NULL&&fast !=NULL){
+      
+//       fast=fast->next;
+//       if(fast->next!=NULL){
+//         fast=fast->next; 
+//         slow=slow->next;
+//       } 
+      
+//    }
+//    return slow;
+// }
+class stack{
    public:
-   int data;
-   Node* next;
-   Node(int data){
-      this->data=data;
-      this->next=NULL;
+   int* arr;
+   int top;
+   int size;
+   stack(int size){
+      arr = new int[size];
+      this->size=size;
+      top=-1;
    }
+   void push(int data){
+   if(size-top>1){
+      //space avl
+      top++;
+      arr[top]=data;
+   }
+   else{
+      cout<<"no space avalible";
+   }
+}
+void pop(){
+   if(top==-1){
+      //stack is empty
+      cout<<"stack is empty";
+   }
+   else{
+      top--;
+   }
+}
+void gettop(){
+   if(top==-1){
+      cout<<"satck is empty";
+   }
+   else{
+
+   cout<<arr[top]<<endl;
+   }
+}
+int getsize(){
+   return top+1;
+}
+bool isempty(){
+   if(top==-1){
+      return true;
+   }
+   else{
+      return false;
+   }
+}
 };
-Node* reverseknode(Node* &head,int k){
-   if(head==NULL){
-      return NULL;
-   }
-   Node* prev=NULL;
-   Node* curr=head;
-   Node* forward=curr->next;
-   int count=0;
-   while(count<k){
-      forward = curr->next;
-      curr->next=prev;
-      prev=curr;
-      curr=forward;
-      count++;
-   }
-   if(forward!=NULL){
-       head->next=reverseknode(forward,k);
-   }
-   return prev;
-}
-void print(Node* &head){
-   Node* temp= head;
-   while(temp!=NULL){
-    cout<<temp->data<<" ";
-    temp=temp-> next; 
-   }
-   cout<<endl;
-}
-Node* getmiddlepointer(Node* &head){
-   if(head==NULL) return head;
-   if(head->next==NULL) return head;
-   Node*slow= head;
-   Node* fast=head;
-   while(slow!=NULL&&fast !=NULL){
-      
-      fast=fast->next;
-      if(fast->next!=NULL){
-        fast=fast->next; 
-        slow=slow->next;
-      } 
-      
-   }
-   return slow;
-}
+
+
+
 
 
 int main(){
-   Node* first=new Node(10);
-   Node* second=new Node(20);
-   Node* third = new Node(30);
-   Node* fourth=new Node(40);
-   Node* fifth=new Node(50);
-   first->next=second;
-   second->next=third;
-   third->next=fourth;
-   fourth->next=fifth;
-   print(first);
-   cout<<getmiddlepointer(first)->data;
-   Node* n=reverseknode(first,3);
-   print(n);
+   stack s(10);
+   s.push(5);
+   s.push(10);
+   s.push(15);
+   s.push(20);
+   cout<<s.getsize()<<endl;
+   s.gettop();
+   s.pop();
+   s.gettop();
+   // Node* first=new Node(10);
+   // Node* second=new Node(20);
+   // Node* third = new Node(30);
+   // Node* fourth=new Node(40);
+   // Node* fifth=new Node(50);
+   // first->next=second;
+   // second->next=third;
+   // third->next=fourth;
+   // fourth->next=fifth;
+   // print(first);
+   // cout<<getmiddlepointer(first)->data;
+   // Node* n=reverseknode(first,3);
+   // print(n);
    
 //    int n;
 //    cout<<"Enter the value of n";
