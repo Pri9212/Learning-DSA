@@ -3,6 +3,7 @@
 #include<algorithm>
 #include<string.h>
 #include<string>
+#include<queue>
 using  namespace std;
 //code for searching an element in nearly sorted array
 // int binarysearch(vector<int>arr, int target){
@@ -313,55 +314,106 @@ using  namespace std;
 //    }
 //    return slow;
 // }
-class stack{
+// class stack{
+//    public:
+//    int* arr;
+//    int top;
+//    int size;
+//    stack(int size){
+//       arr = new int[size];
+//       this->size=size;
+//       top=-1;
+//    }
+//    void push(int data){
+//    if(size-top>1){
+//       //space avl
+//       top++;
+//       arr[top]=data;
+//    }
+//    else{
+//       cout<<"no space avalible";
+//    }
+// }
+// void pop(){
+//    if(top==-1){
+//       //stack is empty
+//       cout<<"stack is empty";
+//    }
+//    else{
+//       top--;
+//    }
+// }
+// void gettop(){
+//    if(top==-1){
+//       cout<<"satck is empty";
+//    }
+//    else{
+
+//    cout<<arr[top]<<endl;
+//    }
+// }
+// int getsize(){
+//    return top+1;
+// }
+// bool isempty(){
+//    if(top==-1){
+//       return true;
+//    }
+//    else{
+//       return false;
+//    }
+// }
+// };
+class dqueue{
    public:
    int* arr;
-   int top;
    int size;
-   stack(int size){
-      arr = new int[size];
+   int front;
+   int rear;
+   dqueue(int size){
       this->size=size;
-      top=-1;
+      arr=new int[size];
+      front=-1;
+      rear=-1;
    }
-   void push(int data){
-   if(size-top>1){
-      //space avl
-      top++;
-      arr[top]=data;
+   void push_rear(int data){
+      if(front==size-1 && rear==0){
+         cout<<"array is full data can't be inserted";
+         return;
+      }
+      else if(front==-1){
+      front =0;
+      rear=0;
+       
+      }
+      else if(rear==size-1&&front!=0){
+         rear=0;
+      }
+      else{
+         rear++;
+      }
+      arr[rear]=data;
    }
-   else{
-      cout<<"no space avalible";
+   void push_front(int data){
+      if(front==size-1 && rear==0){
+         cout<<"array is full data can't be inserted";
+         return;
+      }
+      else if(front==-1){
+      front =0;
+      rear=0;
+       
+      }
+      else if(front==0&&rear!=size-1){
+         rear=size-1;
+      }
+      else{
+         front--;
+      }
+      arr[rear]=data;
    }
-}
-void pop(){
-   if(top==-1){
-      //stack is empty
-      cout<<"stack is empty";
-   }
-   else{
-      top--;
-   }
-}
-void gettop(){
-   if(top==-1){
-      cout<<"satck is empty";
-   }
-   else{
 
-   cout<<arr[top]<<endl;
-   }
-}
-int getsize(){
-   return top+1;
-}
-bool isempty(){
-   if(top==-1){
-      return true;
-   }
-   else{
-      return false;
-   }
-}
+
 };
 
 
@@ -369,15 +421,19 @@ bool isempty(){
 
 
 int main(){
-   stack s(10);
-   s.push(5);
-   s.push(10);
-   s.push(15);
-   s.push(20);
-   cout<<s.getsize()<<endl;
-   s.gettop();
-   s.pop();
-   s.gettop();
+   dqueue dq(10);
+   dq.push_front(10);
+   
+
+   // stack s(10);
+   // s.push(5);
+   // s.push(10);
+   // s.push(15);
+   // s.push(20);
+   // cout<<s.getsize()<<endl;
+   // s.gettop();
+   // s.pop();
+  // s.gettop();
    // Node* first=new Node(10);
    // Node* second=new Node(20);
    // Node* third = new Node(30);
