@@ -364,65 +364,94 @@ using  namespace std;
 //    }
 // }
 // };
-class dqueue{
+// class dqueue{
+//    public:
+//    int* arr;
+//    int size;
+//    int front;
+//    int rear;
+//    dqueue(int size){
+//       this->size=size;
+//       arr=new int[size];
+//       front=-1;
+//       rear=-1;
+//    }
+//    void push_rear(int data){
+//       if(front==size-1 && rear==0){
+//          cout<<"array is full data can't be inserted";
+//          return;
+//       }
+//       else if(front==-1){
+//       front =0;
+//       rear=0;
+       
+//       }
+//       else if(rear==size-1&&front!=0){
+//          rear=0;
+//       }
+//       else{
+//          rear++;
+//       }
+//       arr[rear]=data;
+//    }
+//    void push_front(int data){
+//       if(front==size-1 && rear==0){
+//          cout<<"array is full data can't be inserted";
+//          return;
+//       }
+//       else if(front==-1){
+//       front =0;
+//       rear=0;
+       
+//       }
+//       else if(front==0&&rear!=size-1){
+//          rear=size-1;
+//       }
+//       else{
+//          front--;
+//       }
+//       arr[rear]=data;
+//    }
+
+
+// };
+class node{
    public:
-   int* arr;
-   int size;
-   int front;
-   int rear;
-   dqueue(int size){
-      this->size=size;
-      arr=new int[size];
-      front=-1;
-      rear=-1;
-   }
-   void push_rear(int data){
-      if(front==size-1 && rear==0){
-         cout<<"array is full data can't be inserted";
-         return;
-      }
-      else if(front==-1){
-      front =0;
-      rear=0;
-       
-      }
-      else if(rear==size-1&&front!=0){
-         rear=0;
-      }
-      else{
-         rear++;
-      }
-      arr[rear]=data;
-   }
-   void push_front(int data){
-      if(front==size-1 && rear==0){
-         cout<<"array is full data can't be inserted";
-         return;
-      }
-      else if(front==-1){
-      front =0;
-      rear=0;
-       
-      }
-      else if(front==0&&rear!=size-1){
-         rear=size-1;
-      }
-      else{
-         front--;
-      }
-      arr[rear]=data;
-   }
+   int data;
+   node* right;
+   node*left;
 
-
+   node(int data){
+     this->data=data;
+     right=NULL;
+     
+     left=NULL;
+   }
 };
+node* buildtree(node* root){
+   cout<<"enter data"<<endl;
+   int data;
+   cin>>data;
+   root=new node(data);
+   if(data==-1){
+      return NULL;
+   }
+   cout<<"enter data for inserting left of "<<data<<endl;
+   root->left=buildtree(root->left);
+   cout<<"enter data for inserting right of "<<data<<endl;
+ root->right=buildtree(root->right);
+return root;
+}
 
 
 
 
 
 int main(){
-   dqueue dq(10);
-   dq.push_front(10);
+   node* root=NULL;
+   buildtree(root);
+   // dqueue dq(10);
+   // dq.push_front(10);
    
 
    // stack s(10);
